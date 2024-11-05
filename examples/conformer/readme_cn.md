@@ -16,6 +16,11 @@ Conformer整体结构包括：SpecAug、ConvolutionSubsampling、Linear、Dropou
 
   ![image-20230310165349460](https://raw.githubusercontent.com/mindspore-lab/mindaudio/main/tests/result/conformer.png)
 
+## 版本要求
+| mindspore     |   ascend driver        | firmware     |  cann toolkit/kernel    |
+|:-------------:|:----------------------:|:------------:|:-----------------------:|
+|     2.3.1     |   24.1.RC2             | 7.3.0.1.231  |  8.0.RC2.bata1          |
+
 
 ## 使用步骤
 
@@ -102,32 +107,20 @@ python predict.py --config_path ./conformer.yaml
 # using ctc prefix beam search decoder
 python predict.py --config_path ./conformer.yaml --decode_mode ctc_prefix_beam_search
 
-# using attention decoder
-python predict.py --config_path ./conformer.yaml --decode_mode attention
-
 # using attention rescoring decoder
 python predict.py --config_path ./conformer.yaml --decode_mode attention_rescoring
 ```
 
 ## **模型表现**
-训练的配置文件见 [conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)。
 
-在 ascend 910(8p) 图模式上的测试性能:
+在 ascend 910* mindspore2.3.1图模式上的测试性能:
 
-| model     | decoding mode          | CER          |
-| --------- | ---------------------- |--------------|
-| conformer | ctc greedy search      | 5.35         |
-| conformer | ctc prefix beam search | 5.36         |
-| conformer | attention decoder      | comming soon |
-| conformer | attention rescoring    | 4.95         |
-- 训练好的 [weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-548ee31b.ckpt) 可以在此处下载。
----
-在 ascend 910*(8p) 图模式上的测试性能:
+| model name| cars | batch type | jit level | s/step | recipe | weight |     decoding mode     | cer  |
+|:---------:|:----:|:----------:|:---------:|:------:|:------:|:------:|:---------------------:|:----:|
+| conformer |   8  |  bucket    |     O0    |  0.72  |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |ctc greedy search      | 5.62 |
+| conformer |   8  |  bucket    |     O0    |  0.72  |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |ctc prefix beam search | 5.62 |
+| conformer |   8  |  bucket    |     O0    |  0.72  |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |attention rescoring    | 5.12 |
+<<<<<<< HEAD
 
-| model     | decoding mode          | CER          |
-| --------- | ---------------------- |--------------|
-| conformer | ctc greedy search      | 5.62         |
-| conformer | ctc prefix beam search | 5.62         |
-| conformer | attention decoder      | comming soon |
-| conformer | attention rescoring    | 5.12         |
-- 训练好的 [weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt) 可以在此处下载。
+=======
+>>>>>>> 1d72af4 (update_231)

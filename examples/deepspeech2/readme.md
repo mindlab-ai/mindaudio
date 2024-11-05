@@ -3,7 +3,13 @@
 
 ## Introduction
 
-DeepSpeech2 is a speech recognition model trained using CTC loss. It replaces the entire manually designed component pipeline with neural networks and can handle a variety of speech, including noisy environments, accents, and different languages. The currently provided version supports using the [DeepSpeech2](http://arxiv.org/pdf/1512.02595v1.pdf) model for training/testing and inference on the librispeech dataset on NPU and GPU.
+DeepSpeech2 is a speech recognition model trained using CTC loss. It replaces the entire manually designed component pipeline with neural networks and can handle a variety of speech, including noisy environments, accents, and different languages. The currently provided version supports using the [DeepSpeech2](http://arxiv.org/pdf/1512.02595v1.pdf) model for training/testing and inference on the librispeech dataset on NPU.
+
+
+### Requirements
+| mindspore     |   ascend driver        | firmware     |  cann toolkit/kernel    |
+|:-------------:|:----------------------:|:------------:|:-----------------------:|
+|     2.3.1     |   24.1.RC2             | 7.3.0.1.231  |  8.0.RC2.bata1          |
 
 ### Model Architecture
 
@@ -96,6 +102,12 @@ python eval.py -c "./deepspeech2.yaml"
 
 ## **Model Performance**
 
-| Model        | Machine   | LM   | Test Clean CER | Test Clean WER | Parameters                                                                                               | Weights                                                         |
-|--------------|-----------|------|----------------|----------------|----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| DeepSpeech2  | D910x8-G  | No   | 3.461          | 10.24          | [yaml](https://github.com/mindsporelab/mindaudio/blob/main/example/deepspeech2/deepspeech2.yaml)          | [weights](https://download.mindspore.cn/toolkits/mindaudio/deepspeech2/deepspeech2.ckpt)               |
+Experiments are tested on ascend 910* with mindspore 2.3.1 graph mode:
+
+<<<<<<< HEAD
+| model name | cards | batch size | jit level | s/step | recipe | weight | test clean cer | test clean wer |
+=======
+| model name | cards | batch size | jit level | s/step | recipe | weight | test clean cer | test clean wer |
+>>>>>>> 1d72af4 (update_231)
+|:----------:|:-----:|:----------:|:---------:|:------:|:------:|:------:|:--------------:|:--------------:|
+| deepspeech2|   8   |   64       |    O0     |  2.82  | [yaml](https://github.com/mindsporelab/mindaudio/blob/main/example/deepspeech2/deepspeech2.yaml) | [weights](https://download.mindspore.cn/toolkits/mindaudio/deepspeech2/deepspeech2.ckpt)| 3.461 | 10.24 |

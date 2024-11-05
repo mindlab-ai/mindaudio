@@ -4,7 +4,13 @@
 
 ## 介绍
 
-DeepSpeech2是一种采用CTC损失训练的语音识别模型。它用神经网络取代了整个手工设计组件的管道，可以处理各种各样的语音，包括嘈杂的环境、口音和不同的语言。目前提供版本支持在NPU和GPU上使用[DeepSpeech2](http://arxiv.org/pdf/1512.02595v1.pdf)模型在librispeech数据集上进行训练/测试和推理。
+DeepSpeech2是一种采用CTC损失训练的语音识别模型。它用神经网络取代了整个手工设计组件的管道，可以处理各种各样的语音，包括嘈杂的环境、口音和不同的语言。目前提供版本支持在NPU上使用[DeepSpeech2](http://arxiv.org/pdf/1512.02595v1.pdf)模型在librispeech数据集上进行训练/测试和推理。
+
+
+### 版本要求
+| mindspore     |   ascend driver        | firmware     |  cann toolkit/kernel    |
+|:-------------:|:----------------------:|:------------:|:-----------------------:|
+|     2.3.1     |   24.1.RC2             | 7.3.0.1.231  |  8.0.RC2.bata1          |
 
 ### 模型结构
 
@@ -15,6 +21,7 @@ DeepSpeech2是一种采用CTC损失训练的语音识别模型。它用神经网
   - 通道数为 32，内核大小为  41, 11 ，步长为  2, 1
 - 五个双向 LSTM 层（大小为 1024）
 - 一个投影层【大小为字符数加 1（为CTC空白符号)，28】
+
 
 ### 数据处理
 
@@ -104,6 +111,6 @@ python eval.py -c "./deepspeech2.yaml"
 
 ## **性能表现**
 
-| model        | LM   | test clean cer| test clean wer | config                                     | weights|
-| ----------- | ---- | -------------- | -------------- |--------------------------------------------------------------------------------------------------| ------------------------------------------------------------ |
-| deepspeech2 | No   | 3.461          | 10.24          | [yaml](https://github.com/mindsporelab/mindaudio/blob/main/example/deepspeech2/deepspeech2.yaml) | [weights](https://download.mindspore.cn/toolkits/mindaudio/deepspeech2/deepspeech2.ckpt) |
+| model name | cards | batch size | jit level | s/step | recipe | weight | test clean cer | test clean wer |
+|:----------:|:-----:|:----------:|:---------:|:------:|:------:|:------:|:--------------:|:--------------:|
+| deepspeech2|   8   |   64       |    O0     |  2.82  | [yaml](https://github.com/mindsporelab/mindaudio/blob/main/example/deepspeech2/deepspeech2.yaml) | [weights](https://download.mindspore.cn/toolkits/mindaudio/deepspeech2/deepspeech2.ckpt)| 3.461 | 10.24 |
