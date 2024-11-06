@@ -9,7 +9,7 @@ DeepSpeech2 is a speech recognition model trained using CTC loss. It replaces th
 ### Requirements
 | mindspore     |   ascend driver        | firmware     |  cann toolkit/kernel    |
 |:-------------:|:----------------------:|:------------:|:-----------------------:|
-|     2.3.1     |   24.1.RC2             | 7.3.0.1.231  |  8.0.RC2.bata1          |
+|     2.3.1     |   24.1.RC2             | 7.3.0.1.231  |  8.0.RC2.beta1          |
 
 ### Model Architecture
 
@@ -104,10 +104,6 @@ python eval.py -c "./deepspeech2.yaml"
 
 Experiments are tested on ascend 910* with mindspore 2.3.1 graph mode:
 
-<<<<<<< HEAD
 | model name | cards | batch size | jit level | s/step | recipe | weight | test clean cer | test clean wer |
-=======
-| model name | cards | batch size | jit level | s/step | recipe | weight | test clean cer | test clean wer |
->>>>>>> 1d72af4 (update_231)
 |:----------:|:-----:|:----------:|:---------:|:------:|:------:|:------:|:--------------:|:--------------:|
 | deepspeech2|   8   |   64       |    O0     |  2.82  | [yaml](https://github.com/mindsporelab/mindaudio/blob/main/example/deepspeech2/deepspeech2.yaml) | [weights](https://download.mindspore.cn/toolkits/mindaudio/deepspeech2/deepspeech2.ckpt)| 3.461 | 10.24 |

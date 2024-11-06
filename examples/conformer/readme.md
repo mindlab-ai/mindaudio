@@ -19,7 +19,7 @@ The overall structure of Conformer includes SpecAug, ConvolutionSubsampling, Lin
 ## Requirements
 | mindspore     |   ascend driver        | firmware     |  cann toolkit/kernel    |
 |:-------------:|:----------------------:|:------------:|:-----------------------:|
-|     2.3.1     |   24.1.RC2             | 7.3.0.1.231  |  8.0.RC2.bata1          |
+|     2.3.1     |   24.1.RC2             | 7.3.0.1.231  |  8.0.RC2.beta1          |
 
 
 ## Usage Steps
@@ -121,7 +121,3 @@ Experiments are tested on ascend 910* with mindspore 2.3.1 graph mode:
 | conformer |   8  |  bucket    |     O0    |  0.72  |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |ctc greedy search      | 5.62 |
 | conformer |   8  |  bucket    |     O0    |  0.72  |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |ctc prefix beam search | 5.62 |
 | conformer |   8  |  bucket    |     O0    |  0.72  |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |attention rescoring    | 5.12 |
-<<<<<<< HEAD
-
-=======
->>>>>>> 1d72af4 (update_231)
