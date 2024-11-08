@@ -115,8 +115,8 @@ python predict.py --config_path ./conformer.yaml --decode_mode attention_rescori
 
 在 ascend 910* mindspore2.3.1图模式上的测试性能:
 
-| model name| cars | batch type | jit level | s/step | recipe | weight |     decoding mode     | cer  |
-|:---------:|:----:|:----------:|:---------:|:------:|:------:|:------:|:---------------------:|:----:|
-| conformer |   8  |  bucket    |     O0    |  0.72  |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |ctc greedy search      | 5.62 |
-| conformer |   8  |  bucket    |     O0    |  0.72  |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |ctc prefix beam search | 5.62 |
-| conformer |   8  |  bucket    |     O0    |  0.72  |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |attention rescoring    | 5.12 |
+| model name|     decoding method   | cards | batch size | jit level | graph compile | ms/step | cer | recipe | weight |
+|:---------:|:---------------------:|:-----:|:----------:|:---------:|:-------------:|:-------:|:---:|:------:|:-----:|
+| conformer |ctc greedy search      |   8   |  bucket    |     O0    |   103s        | 727.5   | 5.62 |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |
+| conformer |ctc prefix beam search |   8   |  bucket    |     O0    |   103s        | 727.5   | 5.62 |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |
+| conformer |attention rescoring    |   8   |  bucket    |     O0    |   103s        | 727.5   | 5.12 |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |

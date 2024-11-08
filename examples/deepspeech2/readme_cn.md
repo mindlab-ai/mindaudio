@@ -113,6 +113,6 @@ python eval.py -c "./deepspeech2.yaml"
 
 在 ascend 910* mindspore2.3.1图模式上的测试性能:
 
-| model name | cards | batch size | jit level | s/step | recipe | weight | test clean cer | test clean wer |
-|:----------:|:-----:|:----------:|:---------:|:------:|:------:|:------:|:--------------:|:--------------:|
-| deepspeech2|   8   |   64       |    O0     |  2.82  | [yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/deepspeech2/deepspeech2.yaml) | [weights](https://download.mindspore.cn/toolkits/mindaudio/deepspeech2/deepspeech2.ckpt)| 3.461 | 10.24 |
+| model name | cards | batch size | jit level | graph compile | ms/step | test clean cer | test clean wer | recipe | weight |
+|:----------:|:-----:|:----------:|:---------:|:-------------:|:-------:|:--------------:|:--------:|:-------|:------:|
+| deepspeech2|   8   |   64       |    O0     |  404s         | 9078    | 3.461          | 10.24        |[yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/deepspeech2/deepspeech2.yaml) | [weights](https://download.mindspore.cn/toolkits/mindaudio/deepspeech2/deepspeech2.ckpt)|
