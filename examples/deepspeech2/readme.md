@@ -100,10 +100,12 @@ Update the path to the trained weights in the Pretrained_model section of the de
 python eval.py -c "./deepspeech2.yaml"
 ```
 
-## **Model Performance**
+## **Performance**
 
 Experiments are tested on ascend 910* with mindspore 2.3.1 graph mode:
 
-| model name | cards | batch size | jit level | graph compile | ms/step | test clean cer | test clean wer | recipe | weight |
-|:----------:|:-----:|:----------:|:---------:|:-------------:|:-------:|:--------------:|:--------:|:-------|:------:|
+| model name | cards | batch size | jit level | graph compile | ms/step | cer | wer | recipe | weight |
+|:----------:|:-----:|:----------:|:---------:|:-------------:|:-------:|:---:|:---:|:-------|:------:|
 | deepspeech2|   8   |   64       |    O0     |  404s         | 9078    | 3.461          | 10.24        |[yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/deepspeech2/deepspeech2.yaml) | [weights](https://download.mindspore.cn/toolkits/mindaudio/deepspeech2/deepspeech2.ckpt)|
+
+- cer and wer tested in Librispeech `test clean` datasets.
