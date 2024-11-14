@@ -7,12 +7,12 @@
 DeepSpeech2是一种采用CTC损失训练的语音识别模型。它用神经网络取代了整个手工设计组件的管道，可以处理各种各样的语音，包括嘈杂的环境、口音和不同的语言。目前提供版本支持在NPU上使用[DeepSpeech2](http://arxiv.org/pdf/1512.02595v1.pdf)模型在librispeech数据集上进行训练/测试和推理。
 
 
-### 版本要求
-| mindspore     |   ascend driver        | firmware     |  cann toolkit/kernel    |
-|:-------------:|:----------------------:|:------------:|:-----------------------:|
-|     2.3.1     |   24.1.RC2             | 7.3.0.1.231  |  8.0.RC2.beta1          |
+## 版本要求
+| mindspore | ascend driver |  firmware   | cann toolkit/kernel |
+|:---------:|:-------------:|:-----------:|:-------------------:|
+|   2.3.1   |   24.1.RC2    | 7.3.0.1.231 |    8.0.RC2.beta1    |
 
-### 模型结构
+## 模型结构
 
 目前的复现的模型包括:
 
@@ -23,7 +23,7 @@ DeepSpeech2是一种采用CTC损失训练的语音识别模型。它用神经网
 - 一个投影层【大小为字符数加 1（为CTC空白符号)，28】
 
 
-### 数据处理
+## 数据处理
 
 - 音频：
 
@@ -35,6 +35,7 @@ DeepSpeech2是一种采用CTC损失训练的语音识别模型。它用神经网
 
 ​		文字编码使用labels进行英文字母转换，用户可使用分词模型进行替换。
 
+## 使用步骤
 
 ### 1. 数据集准备
 如为未下载数据集，可使用提供的脚本进行一键下载以及数据准备，如下所示：
@@ -109,12 +110,12 @@ python eval.py -c "./deepspeech2.yaml"
 
 
 
-## **性能表现**
+## 性能表现
 
 在 ascend 910* mindspore2.3.1图模式上的测试性能:
 
-| model name | cards | batch size | jit level | graph compile | ms/step | cer | wer | recipe | weight |
-|:----------:|:-----:|:----------:|:---------:|:-------------:|:-------:|:---:|:---:|:-------|:------:|
-| deepspeech2|   8   |   64       |    O0     |  404s         | 9078    | 3.461          | 10.24        |[yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/deepspeech2/deepspeech2.yaml) | [weights](https://download.mindspore.cn/toolkits/mindaudio/deepspeech2/deepspeech2.ckpt)|
+| model name  | cards | batch size | jit level | graph compile | ms/step |  cer  |  wer  | recipe                                                                                             |                                          weight                                          |
+|:-----------:|:-----:|:----------:|:---------:|:-------------:|:-------:|:-----:|:-----:|:---------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------:|
+| deepspeech2 |   8   |     64     |    O0     |     404s      |  9078   | 3.461 | 10.24 | [yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/deepspeech2/deepspeech2.yaml) | [weights](https://download.mindspore.cn/toolkits/mindaudio/deepspeech2/deepspeech2.ckpt) |
 
 - cer和wer由Librispeech `test clean` 数据集上测试得到。

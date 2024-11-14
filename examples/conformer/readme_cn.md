@@ -6,7 +6,12 @@
 
 conformer是将一种transformer和cnn结合起来，对音频序列进行局部和全局依赖都进行建模的模型。目前基于transformer和卷积神经网络cnn的模型在ASR上已经达到了较好的效果，Transformer能够捕获长序列的依赖和基于内容的全局交互信息，CNN则能够有效利用局部特征，因此针对语音识别问题提出了卷积增强的transformer模型，称为conformer，模型性能优于transformer和cnn。目前提供版本支持在NPU和GPU上使用[conformer](https://arxiv.org/pdf/2102.06657v1.pdf)模型在aishell-1数据集上进行训练/测试和推理。
 
-### 模型结构
+## 版本要求
+| mindspore | ascend driver |  firmware   | cann toolkit/kernel |
+|:---------:|:-------------:|:-----------:|:-------------------:|
+|   2.3.1   |   24.1.RC2    | 7.3.0.1.231 |    8.0.RC2.beta1    |
+
+## 模型结构
 
 Conformer整体结构包括：SpecAug、ConvolutionSubsampling、Linear、Dropout、ConformerBlocks×N，可见如下结构图。
 
@@ -16,10 +21,6 @@ Conformer整体结构包括：SpecAug、ConvolutionSubsampling、Linear、Dropou
 
   ![image-20230310165349460](https://raw.githubusercontent.com/mindspore-lab/mindaudio/main/tests/result/conformer.png)
 
-## 版本要求
-| mindspore     |   ascend driver        | firmware     |  cann toolkit/kernel    |
-|:-------------:|:----------------------:|:------------:|:-----------------------:|
-|     2.3.1     |   24.1.RC2             | 7.3.0.1.231  |  8.0.RC2.beta1          |
 
 
 ## 使用步骤
@@ -111,12 +112,12 @@ python predict.py --config_path ./conformer.yaml --decode_mode ctc_prefix_beam_s
 python predict.py --config_path ./conformer.yaml --decode_mode attention_rescoring
 ```
 
-## **模型表现**
+## 模型表现
 
 在 ascend 910* mindspore2.3.1图模式上的测试性能:
 
-| model name|     decoding method   | cards | batch size | jit level | graph compile | ms/step | cer | recipe | weight |
-|:---------:|:---------------------:|:-----:|:----------:|:---------:|:-------------:|:-------:|:---:|:------:|:-----:|
-| conformer |ctc greedy search      |   8   |  bucket    |     O0    |   103s        | 727.5   | 5.62 |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |
-| conformer |ctc prefix beam search |   8   |  bucket    |     O0    |   103s        | 727.5   | 5.62 |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |
-| conformer |attention rescoring    |   8   |  bucket    |     O0    |   103s        | 727.5   | 5.12 |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |
+| model name |    decoding method     | cards | batch size | jit level | graph compile | ms/step | cer  |                                                  recipe                                                  |                                                       weight                                                       |
+|:----------:|:----------------------:|:-----:|:----------:|:---------:|:-------------:|:-------:|:----:|:--------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------:|
+| conformer  |   ctc greedy search    |   8   |   bucket   |    O0     |     103s      |  727.5  | 5.62 | [conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml) | [weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt) |
+| conformer  | ctc prefix beam search |   8   |   bucket   |    O0     |     103s      |  727.5  | 5.62 | [conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml) | [weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt) |
+| conformer  |  attention rescoring   |   8   |   bucket   |    O0     |     103s      |  727.5  | 5.12 | [conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml) | [weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt) |

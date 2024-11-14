@@ -22,11 +22,11 @@ MindAudio 是基于 [MindSpore](https://www.mindspore.cn/) 的音频模型和算
 
 下表显示了相应的 `mindaudio` 版本和支持的 `mindspore` 版本。
 
-| `mindaudio` | `mindspore`         |
-|-------------|---------------------|
-| `master`    | `master`            |
-| `0.4`       | `2.3.0`/`2.3.1`     |
-| `0.3`       | `2.2.10`            |
+|  mindaudio  |   mindspore   |
+|:-----------:|:-------------:|
+|    main     |    master     |
+|     0.4     |  2.3.0/2.3.1  |
+|     0.3     |    2.2.10     |
 
 ### 数据处理
 

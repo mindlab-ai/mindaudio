@@ -6,12 +6,12 @@
 DeepSpeech2 is a speech recognition model trained using CTC loss. It replaces the entire manually designed component pipeline with neural networks and can handle a variety of speech, including noisy environments, accents, and different languages. The currently provided version supports using the [DeepSpeech2](http://arxiv.org/pdf/1512.02595v1.pdf) model for training/testing and inference on the librispeech dataset on NPU.
 
 
-### Requirements
-| mindspore     |   ascend driver        | firmware     |  cann toolkit/kernel    |
-|:-------------:|:----------------------:|:------------:|:-----------------------:|
-|     2.3.1     |   24.1.RC2             | 7.3.0.1.231  |  8.0.RC2.beta1          |
+## Requirements
+| mindspore | ascend driver |  firmware   | cann toolkit/kernel |
+|:---------:|:-------------:|:-----------:|:-------------------:|
+|   2.3.1   |   24.1.RC2    | 7.3.0.1.231 |    8.0.RC2.beta1    |
 
-### Model Architecture
+## Model Architecture
 
 The current reproduced model includes:
 
@@ -21,7 +21,7 @@ The current reproduced model includes:
 - Five bidirectional LSTM layers (size 1024)
 - A projection layer [size equal to the number of characters plus 1 (for the CTC blank symbol), 28]
 
-### Data Processing
+## Data Processing
 
 - Audio:
   1. Feature extraction: log power spectrum.
@@ -100,12 +100,12 @@ Update the path to the trained weights in the Pretrained_model section of the de
 python eval.py -c "./deepspeech2.yaml"
 ```
 
-## **Performance**
+## Performance
 
 Experiments are tested on ascend 910* with mindspore 2.3.1 graph mode:
 
-| model name | cards | batch size | jit level | graph compile | ms/step | cer | wer | recipe | weight |
-|:----------:|:-----:|:----------:|:---------:|:-------------:|:-------:|:---:|:---:|:-------|:------:|
-| deepspeech2|   8   |   64       |    O0     |  404s         | 9078    | 3.461          | 10.24        |[yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/deepspeech2/deepspeech2.yaml) | [weights](https://download.mindspore.cn/toolkits/mindaudio/deepspeech2/deepspeech2.ckpt)|
+| model name  | cards | batch size | jit level | graph compile | ms/step |  cer  |  wer  | recipe                                                                                             |                                          weight                                          |
+|:-----------:|:-----:|:----------:|:---------:|:-------------:|:-------:|:-----:|:-----:|:---------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------:|
+| deepspeech2 |   8   |     64     |    O0     |     404s      |  9078   | 3.461 | 10.24 | [yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/deepspeech2/deepspeech2.yaml) | [weights](https://download.mindspore.cn/toolkits/mindaudio/deepspeech2/deepspeech2.ckpt) |
 
 - cer and wer tested in Librispeech `test clean` datasets.

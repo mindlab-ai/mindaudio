@@ -6,6 +6,11 @@
 
 Conformer is a model that combines transformers and CNNs to model both local and global dependencies in audio sequences. Currently, models based on transformers and convolutional neural networks (CNNs) have achieved good results in automatic speech recognition (ASR). Transformers can capture long-sequence dependencies and global interactions based on content, while CNNs can effectively utilize local features. Therefore, a convolution-enhanced transformer model called Conformer has been proposed for speech recognition, showing performance superior to both transformers and CNNs. The current version supports using the Conformer model for training/testing and inference on the AISHELL-1 dataset on ascend NPU and GPU.
 
+## Requirements
+| mindspore | ascend driver |  firmware   | cann toolkit/kernel |
+|:---------:|:-------------:|:-----------:|:-------------------:|
+|   2.3.1   |   24.1.RC2    | 7.3.0.1.231 |    8.0.RC2.beta1    |
+
 ### Model Structure
 
 The overall structure of Conformer includes SpecAug, ConvolutionSubsampling, Linear, Dropout, and ConformerBlocks×N, as shown in the structure diagram below.
@@ -16,10 +21,6 @@ The overall structure of Conformer includes SpecAug, ConvolutionSubsampling, Lin
 
   ![image-20230310165349460](https://raw.githubusercontent.com/mindspore-lab/mindaudio/main/tests/result/conformer.png)
 
-## Requirements
-| mindspore     |   ascend driver        | firmware     |  cann toolkit/kernel    |
-|:-------------:|:----------------------:|:------------:|:-----------------------:|
-|     2.3.1     |   24.1.RC2             | 7.3.0.1.231  |  8.0.RC2.beta1          |
 
 
 
@@ -117,8 +118,8 @@ python predict.py --config_path ./conformer.yaml --decode_mode attention_rescori
 
 Experiments are tested on ascend 910* with mindspore 2.3.1 graph mode:
 
-| model name|     decoding method   | cards | batch size | jit level | graph compile | ms/step | cer | recipe | weight |
-|:---------:|:---------------------:|:-----:|:----------:|:---------:|:-------------:|:-------:|:---:|:------:|:-----:|
-| conformer |ctc greedy search      |   8   |  bucket    |     O0    |   103s        | 727.5   | 5.62 |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |
-| conformer |ctc prefix beam search |   8   |  bucket    |     O0    |   103s        | 727.5   | 5.62 |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |
-| conformer |attention rescoring    |   8   |  bucket    |     O0    |   103s        | 727.5   | 5.12 |[conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml)  |[weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt)     |
+| model name |    decoding method     | cards | batch size | jit level | graph compile | ms/step | cer  |                                                  recipe                                                  |                                                       weight                                                       |
+|:----------:|:----------------------:|:-----:|:----------:|:---------:|:-------------:|:-------:|:----:|:--------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------:|
+| conformer  |   ctc greedy search    |   8   |   bucket   |    O0     |     103s      |  727.5  | 5.62 | [conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml) | [weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt) |
+| conformer  | ctc prefix beam search |   8   |   bucket   |    O0     |     103s      |  727.5  | 5.62 | [conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml) | [weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt) |
+| conformer  |  attention rescoring   |   8   |   bucket   |    O0     |     103s      |  727.5  | 5.12 | [conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml) | [weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt) |
