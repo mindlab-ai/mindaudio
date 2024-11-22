@@ -12,7 +12,7 @@
 
 [Introduction](#introduction) |
 [Installation](#installation) |
-[Get Started](#get-started)
+[Get Started](#get-started-with-audio-data-analysis)
 
 English | [中文](README_CN.md)
 
@@ -24,11 +24,12 @@ MindAudio is a toolbox of audio models and algorithms based on [MindSpore](https
 
 The following is the corresponding `mindaudio` versions and supported `mindspore` versions.
 
-| `mindspore`  | `mindaudio` | 
-|--------------|-------------|
-| `master`     | `master`    | 
-| `2.3.0`      | `0.4`       | 
-| `2.2.10`     | `0.3`       | 
+|  mindaudio  |   mindspore   |
+|:-----------:|:-------------:|
+|    main     |    master     |
+|     0.4     |  2.3.0/2.3.1  |
+|     0.3     |    2.2.10     |
+
 ### data processing
 
 ```python

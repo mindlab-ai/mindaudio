@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 If this is your first time, please read our contributor guidelines:
-https://github.com/mindspore-lab/mindcv/blob/main/CONTRIBUTING.md
+https://github.com/mindspore-lab/mindaudio/blob/main/CONTRIBUTING.md
 
 **Describe the bug/ 问题描述 (Mandatory / 必填)**
 A clear and concise description of what the bug is.
