@@ -6,6 +6,11 @@
 
 Conformer is a model that combines transformers and CNNs to model both local and global dependencies in audio sequences. Currently, models based on transformers and convolutional neural networks (CNNs) have achieved good results in automatic speech recognition (ASR). Transformers can capture long-sequence dependencies and global interactions based on content, while CNNs can effectively utilize local features. Therefore, a convolution-enhanced transformer model called Conformer has been proposed for speech recognition, showing performance superior to both transformers and CNNs. The current version supports using the Conformer model for training/testing and inference on the AISHELL-1 dataset on ascend NPU and GPU.
 
+## Requirements
+| mindspore | ascend driver |  firmware   | cann toolkit/kernel |
+|:---------:|:-------------:|:-----------:|:-------------------:|
+|   2.3.1   |   24.1.RC2    | 7.3.0.1.231 |    8.0.RC2.beta1    |
+
 ### Model Structure
 
 The overall structure of Conformer includes SpecAug, ConvolutionSubsampling, Linear, Dropout, and ConformerBlocks×N, as shown in the structure diagram below.
@@ -15,6 +20,7 @@ The overall structure of Conformer includes SpecAug, ConvolutionSubsampling, Lin
 - Macaron Structure: The ConformerBlock resembles a macaron structure, with a Multi-Head Self Attention Module and Convolution Module sandwiched between two identical Feed Forward Modules.
 
   ![image-20230310165349460](https://raw.githubusercontent.com/mindspore-lab/mindaudio/main/tests/result/conformer.png)
+
 
 
 
@@ -103,35 +109,17 @@ python predict.py --config_path ./conformer.yaml
 # using ctc prefix beam search decoder
 python predict.py --config_path ./conformer.yaml --decode_mode ctc_prefix_beam_search
 
-# using attention decoder
-python predict.py --config_path ./conformer.yaml --decode_mode attention
-
 # using attention rescoring decoder
 python predict.py --config_path ./conformer.yaml --decode_mode attention_rescoring
 ```
 
 
+## Performance
 
-## Model Performance
-The training config can be found in the [conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml).
+Experiments are tested on ascend 910* with mindspore 2.3.1 graph mode:
 
-Performance tested on ascend 910 (8p) with graph mode:
-
-| model     | decoding mode          | CER          |
-|-----------|------------------------|--------------|
-| conformer | ctc greedy search      | 5.35         |
-| conformer | ctc prefix beam search | 5.36         |
-| conformer | attention decoder      | comming soon |
-| conformer | attention rescoring    | 4.95         |
-- [weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-548ee31b.ckpt) can be downloaded here.
-
----
-Performance tested on ascend 910* (8p) with graph mode:
-
-| model     | decoding mode          | CER          |
-|-----------|------------------------|--------------|
-| conformer | ctc greedy search      | 5.62         |
-| conformer | ctc prefix beam search | 5.62         |
-| conformer | attention decoder      | comming soon |
-| conformer | attention rescoring    | 5.12         |
-- [weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt) can be downloaded here.
+| model name |    decoding method     | cards | batch size | jit level | graph compile | ms/step | cer  |                                                  recipe                                                  |                                                       weight                                                       |
+|:----------:|:----------------------:|:-----:|:----------:|:---------:|:-------------:|:-------:|:----:|:--------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------:|
+| conformer  |   ctc greedy search    |   8   |   bucket   |    O0     |     103s      |  727.5  | 5.62 | [conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml) | [weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt) |
+| conformer  | ctc prefix beam search |   8   |   bucket   |    O0     |     103s      |  727.5  | 5.62 | [conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml) | [weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt) |
+| conformer  |  attention rescoring   |   8   |   bucket   |    O0     |     103s      |  727.5  | 5.12 | [conformer.yaml](https://github.com/mindspore-lab/mindaudio/blob/main/examples/conformer/conformer.yaml) | [weights](https://download-mindspore.osinfra.cn/toolkits/mindaudio/conformer/conformer_avg_30-692d57b3-910v2.ckpt) |
