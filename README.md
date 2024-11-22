@@ -30,7 +30,6 @@ The following is the corresponding `mindaudio` versions and supported `mindspore
 |     0.4     |  2.3.0/2.3.1  |
 |     0.3     |    2.2.10     |
 
-
 ### data processing
 
 ```python
